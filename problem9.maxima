@@ -1,0 +1,2 @@
+solve( a^2 + b^2 = ( N - a - b )^2, b);
+partfrac(%, a);

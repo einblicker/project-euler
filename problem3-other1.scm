@@ -1,0 +1,17 @@
+(define (divisor-of? n m) (zero? (modulo m n)))
+(define (factorize n)
+  (define div (inexact->exact (floor (sqrt n))))
+  (define (factorize-1 n div)
+    (cond
+     ((= div 1) (list n))
+     ((and (odd? n) (even? div)) (factorize-1 n (- div 1)))
+     ((divisor-of? div n) (append (factorize (/ n div)) (factorize div)))
+     ((odd? n) (factorize-1 n (- div 2)))
+     (else (factorize-1 n (- div 1)))))
+  (factorize-1 n div))
+(define (solve)
+  (apply max (factorize 600851475143)))
+(define (main argv)
+  (display (solve))
+  (newline))
+
